@@ -1,0 +1,25 @@
+
+<form (ngSubmit)="searchOffers()">
+  <label for="type">Type:</label>
+  <select id="type" name="type" [(ngModel)]="searchType">
+    <option value="Aller">Aller</option>
+    <option value="Retour">Retour</option>
+    
+  </select>
+  <input type="text" id="location" name="location" [(ngModel)]="location">
+  <label for="departureDate">Date de départ:</label>
+  <input type="date" id="departureDate" name="departureDate" [(ngModel)]="departureDate">
+  <label for="returnDate">Date de retour:</label>
+  <input type="date" id="returnDate" name="returnDate" [(ngModel)]="returnDate">
+  <button type="submit">Rechercher</button>
+</form>
+
+
+<div class="row column-sm property-label" [class.list-view]="listView" [ngClass]="{ 'property-2 property-grid' : type != 'profile' }">
+  <div *ngFor="let offer of carpoolingOffers; let i = index; trackBy: trackByFn">
+    <div [class.col-md-6]="col_md_6" [class.col-xl-4]="col_xl_4 || type == 'profile'" [class.col-lg-6]="col_lg_6" [class.col-lg-4]="col_lg_4">
+      <app-agency-agents [carpoolingOffers]="offer"></app-agency-agents>
+    </div>
+  </div>
+</div>
+
